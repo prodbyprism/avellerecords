@@ -16,8 +16,8 @@
     }
 
     body{
-      background:#f5f7fb;
-      color:#0b0f19;
+      background:#000;
+      color:white;
       font-family:'Quicksand', sans-serif;
       overflow-x:hidden;
     }
@@ -32,9 +32,9 @@
       justify-content:space-between;
       align-items:center;
       z-index:1000;
-      background:rgba(255,255,255,0.7);
+      background:rgba(0,0,0,0.35);
       backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(0,0,0,0.08);
+      border-bottom:1px solid rgba(255,255,255,0.08);
     }
 
     .logo{
@@ -46,31 +46,18 @@
     .avelle{
       font-family:'Allura', cursive;
       font-size:3rem;
-      color:#0b0f19;
     }
 
     .records{
       font-weight:300;
       letter-spacing:3px;
-      opacity:0.7;
-      color:#0b0f19;
+      opacity:0.85;
     }
 
-    nav{
-      display:flex;
-      gap:30px;
-    }
-
-    nav a{
-      text-decoration:none;
-      color:#0b0f19;
-      opacity:0.7;
-      transition:0.3s;
-    }
-
+    nav{display:flex;gap:30px;}
+    nav a{text-decoration:none;color:white;opacity:0.8;}
     nav a:hover{opacity:1;}
 
-    /* HERO */
     .hero{
       position:relative;
       height:100vh;
@@ -86,7 +73,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(-45deg,#ffffff,#e8eefc,#f3f6ff,#dde6ff,#ffffff);
+      background:linear-gradient(-45deg,#000,#0f172a,#111827,#1e1b4b,#000);
       background-size:400% 400%;
       animation:gradientMove 15s ease infinite;
       z-index:-2;
@@ -97,7 +84,7 @@
       position:absolute;
       width:900px;
       height:900px;
-      background:radial-gradient(circle,rgba(0,0,0,0.08),transparent 70%);
+      background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 70%);
       filter:blur(50px);
       animation:float 10s ease-in-out infinite;
       z-index:-1;
@@ -115,178 +102,82 @@
       100%{transform:translateY(0);}
     }
 
-    #title{
-      font-size:clamp(3rem,10vw,7rem);
-      margin-bottom:20px;
-    }
+    #title{font-size:clamp(3rem,10vw,7rem);margin-bottom:20px;}
+    .hero-avelle{font-family:'Allura', cursive;font-size:1.2em;}
+    .subtitle{opacity:0.8;max-width:700px;margin:auto;line-height:1.8;}
 
-    .hero-avelle{
-      font-family:'Allura', cursive;
-      font-size:1.2em;
-    }
+    .section{padding:120px 10%;}
+    .section-title{font-size:2.5rem;margin-bottom:50px;}
 
-    .subtitle{
-      opacity:0.75;
+    /* DEMO FORM */
+    .demo-form-wrapper{
       max-width:700px;
       margin:auto;
-      line-height:1.8;
-      color:#1a1f2e;
-    }
-
-    /* SECTION */
-    .section{
-      padding:120px 10%;
-    }
-
-    .section-title{
-      font-size:2.5rem;
-      margin-bottom:50px;
-      color:#0b0f19;
-    }
-
-    /* ARTISTS */
-    .artists-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:30px;
-    }
-
-    .artist-card{
-      height:420px;
-      border-radius:26px;
-      overflow:hidden;
-      cursor:pointer;
-      background:#ffffff;
-      transition:0.4s;
-      position:relative;
-      border:1px solid rgba(0,0,0,0.08);
-    }
-
-    .artist-card:hover{transform:translateY(-10px);}
-
-    .artist-card img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      transition:0.5s;
-    }
-
-    .artist-card:hover img{transform:scale(1.05);}
-
-    .artist-overlay{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
-      display:flex;
-      align-items:flex-end;
-      padding:28px;
-      color:white;
-    }
-
-    .artist-name{font-size:1.7rem;font-weight:700;}
-    .artist-genre{opacity:0.8;margin-top:6px;}
-
-    /* MODAL */
-    .artist-section{
-      position:fixed;
-      inset:0;
-      background:#f5f7fb;
-      z-index:5000;
-      padding:120px 10%;
-      overflow-y:auto;
-
-      opacity:0;
-      visibility:hidden;
-      transform:translateY(40px);
-      transition:0.45s ease;
-    }
-
-    .artist-section.active{
-      opacity:1;
-      visibility:visible;
-      transform:translateY(0);
-    }
-
-    .artist-banner{
-      height:60vh;
-      border-radius:30px;
-      overflow:hidden;
-      position:relative;
-      margin-bottom:60px;
-    }
-
-    .artist-banner img{
-      width:100%;height:100%;object-fit:cover;
-      filter:brightness(0.8);
-    }
-
-    .artist-banner-content{
-      position:absolute;
-      bottom:40px;
-      left:40px;
-      color:white;
-    }
-
-    .artist-banner-name{
-      font-size:clamp(3rem,7vw,6rem);
-    }
-
-    .artist-content{
-      display:grid;
-      grid-template-columns:2fr 1fr;
-      gap:60px;
-      color:#0b0f19;
-    }
-
-    .artist-bio{
-      line-height:1.9;
-      opacity:0.85;
-    }
-
-    .sidebar{
-      background:white;
-      border:1px solid rgba(0,0,0,0.08);
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
       border-radius:24px;
-      padding:30px;
+      padding:40px;
+      backdrop-filter:blur(16px);
     }
 
-    .socials a{
-      display:block;
-      margin-bottom:12px;
-      color:#0b0f19;
-      opacity:0.7;
-      text-decoration:none;
+    .demo-form{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
     }
 
-    .socials a:hover{opacity:1;}
+    .demo-form label{
+      font-size:0.9rem;
+      opacity:0.8;
+    }
 
-    .back{
-      display:inline-block;
-      margin-bottom:30px;
-      padding:12px 18px;
-      background:white;
-      border:1px solid rgba(0,0,0,0.1);
+    .demo-form input,
+    .demo-form textarea{
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(0,0,0,0.4);
+      color:white;
+      outline:none;
+    }
+
+    .demo-form input:focus,
+    .demo-form textarea:focus{
+      border-color:rgba(255,255,255,0.3);
+    }
+
+    .demo-form button{
+      margin-top:10px;
+      padding:14px;
+      border:none;
       border-radius:999px;
-      text-decoration:none;
-      color:#0b0f19;
+      background:white;
+      color:black;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .demo-form button:hover{
+      transform:scale(1.03);
+      opacity:0.9;
     }
 
     footer{
       padding:50px 10%;
-      border-top:1px solid rgba(0,0,0,0.08);
+      border-top:1px solid rgba(255,255,255,0.08);
       display:flex;
       justify-content:space-between;
       flex-wrap:wrap;
-      opacity:0.7;
-      color:#0b0f19;
+      opacity:0.6;
     }
 
     @media(max-width:900px){
       nav{display:none;}
-      .artist-content{grid-template-columns:1fr;}
     }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -295,7 +186,7 @@
     <span class="records">RECORDS</span>
   </div>
   <nav>
-    <a href="#artists">Artists</a>
+    <a href="#demos">Submit Demo</a>
     <a href="#">Releases</a>
     <a href="#">News</a>
   </nav>
@@ -308,33 +199,36 @@
   </div>
 </section>
 
-<section class="section" id="artists">
-  <h2 class="section-title">Artists</h2>
-  <div class="artists-grid" id="grid"></div>
-</section>
+<!-- DEMO SECTION -->
+<section class="section" id="demos">
+  <h2 class="section-title">Submit Your Demo</h2>
 
-<section class="artist-section" id="artistSection">
+  <div class="demo-form-wrapper">
+    <form action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" class="demo-form">
 
-  <a class="back" onclick="closeArtist()">← Back</a>
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
 
-  <div class="artist-banner">
-    <img id="img">
-    <div class="artist-banner-content">
-      <div class="artist-banner-name" id="name"></div>
-      <div id="genre"></div>
-    </div>
-  </div>
+      <label>Artist Name</label>
+      <input type="text" name="artist_name" required>
 
-  <div class="artist-content">
-    <div>
-      <h2>About</h2>
-      <p class="artist-bio" id="bio"></p>
-    </div>
+      <label>Email</label>
+      <input type="email" name="email" required>
 
-    <div class="sidebar">
-      <h3>Socials</h3>
-      <div class="socials" id="socials"></div>
-    </div>
+      <label>Track Name</label>
+      <input type="text" name="track_name" required>
+
+      <label>Genre</label>
+      <input type="text" name="genre">
+
+      <label>Demo Link</label>
+      <input type="url" name="demo_link" required>
+
+      <label>Message</label>
+      <textarea name="message" rows="6" placeholder="Tell us about yourself..."></textarea>
+
+      <button type="submit">Send Demo</button>
+    </form>
   </div>
 </section>
 
@@ -342,52 +236,6 @@
   <p>© 2026 Avelle Records</p>
   <p>Designed for music.</p>
 </footer>
-
-<script>
-let artists=[];
-
-fetch('./artists.json')
-  .then(r=>r.json())
-  .then(d=>{artists=d;render();});
-
-const grid=document.getElementById("grid");
-
-function render(){
-  artists.forEach(a=>{
-    const el=document.createElement("div");
-    el.className="artist-card";
-    el.innerHTML=`<img src="${a.image}"><div class="artist-overlay"><div><div class="artist-name">${a.name}</div><div class="artist-genre">${a.genre}</div></div></div>`;
-    el.onclick=()=>openArtist(a);
-    grid.appendChild(el);
-  });
-}
-
-function openArtist(a){
-  document.getElementById("artistSection").classList.add("active");
-  document.getElementById("name").textContent=a.name;
-  document.getElementById("genre").textContent=a.genre;
-  document.getElementById("bio").textContent=a.bio;
-  document.getElementById("img").src=a.image;
-
-  const s=document.getElementById("socials");
-  s.innerHTML="";
-
-  Object.entries(a.socials).forEach(([k,v])=>{
-    const l=document.createElement("a");
-    l.href=v;
-    l.textContent=k;
-    l.target="_blank";
-    s.appendChild(l);
-  });
-
-  document.body.style.overflow="hidden";
-}
-
-function closeArtist(){
-  document.getElementById("artistSection").classList.remove("active");
-  document.body.style.overflow="auto";
-}
-</script>
 
 </body>
 </html>
