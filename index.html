@@ -109,7 +109,7 @@
     .section{padding:120px 10%;}
     .section-title{font-size:2.5rem;margin-bottom:50px;}
 
-    /* DEMO FORM */
+    /* FORM */
     .demo-form-wrapper{
       max-width:700px;
       margin:auto;
@@ -135,15 +135,18 @@
     .demo-form textarea{
       padding:14px;
       border-radius:12px;
-      border:1px solid rgba(255,255,255,0.1);
-      background:rgba(0,0,0,0.4);
+      border:1px solid rgba(255,255,255,0.15);
+      background:rgba(20,20,20,0.95);
       color:white;
       outline:none;
+      transition:0.2s;
     }
 
     .demo-form input:focus,
     .demo-form textarea:focus{
-      border-color:rgba(255,255,255,0.3);
+      border-color:#fff;
+      background:rgba(35,35,35,0.95);
+      box-shadow:0 0 0 2px rgba(255,255,255,0.08);
     }
 
     .demo-form button{
@@ -175,6 +178,61 @@
     @media(max-width:900px){
       nav{display:none;}
     }
+
+    /* POPUP (THANK YOU MODAL) */
+    .popup{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+      opacity:0;
+      pointer-events:none;
+      transition:0.3s;
+    }
+
+    .popup.active{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .popup-box{
+      background:#111;
+      border:1px solid rgba(255,255,255,0.1);
+      padding:40px;
+      border-radius:24px;
+      text-align:center;
+      max-width:400px;
+      animation:pop 0.3s ease;
+    }
+
+    @keyframes pop{
+      from{transform:scale(0.9);opacity:0;}
+      to{transform:scale(1);opacity:1;}
+    }
+
+    .popup-box h2{
+      font-size:2rem;
+      margin-bottom:10px;
+    }
+
+    .popup-box p{
+      opacity:0.7;
+      margin-bottom:20px;
+      line-height:1.6;
+    }
+
+    .popup-box button{
+      padding:12px 20px;
+      border-radius:999px;
+      border:none;
+      background:white;
+      color:black;
+      cursor:pointer;
+      font-weight:600;
+    }
   </style>
 </head>
 
@@ -195,19 +253,18 @@
 <section class="hero">
   <div>
     <h1 id="title"><span class="hero-avelle">Avelle</span> Records</h1>
-    <p class="subtitle">Building the next wave of electronic artists and cinematic sound.</p>
+    <p class="subtitle">Electronic record label based in Sweden.</p>
   </div>
 </section>
 
-<!-- DEMO SECTION -->
+<!-- FORM -->
 <section class="section" id="demos">
   <h2 class="section-title">Submit Your Demo</h2>
 
   <div class="demo-form-wrapper">
-    <form action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" class="demo-form">
+    <form id="demoForm" action="https://formsubmit.co/prism@prodbyprism.com" method="POST" class="demo-form">
 
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
 
       <label>Artist Name</label>
       <input type="text" name="artist_name" required>
@@ -225,7 +282,7 @@
       <input type="url" name="demo_link" required>
 
       <label>Message</label>
-      <textarea name="message" rows="6" placeholder="Tell us about yourself..."></textarea>
+      <textarea name="message" rows="6"></textarea>
 
       <button type="submit">Send Demo</button>
     </form>
@@ -236,6 +293,31 @@
   <p>© 2026 Avelle Records</p>
   <p>Designed for music.</p>
 </footer>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h2>Thank You!</h2>
+    <p>Your demo has been received. We'll listen and get back if it's a fit.</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+</div>
+
+<script>
+const form = document.getElementById("demoForm");
+const popup = document.getElementById("popup");
+
+form.addEventListener("submit", function(){
+  setTimeout(() => {
+    popup.classList.add("active");
+    form.reset();
+  }, 300);
+});
+
+function closePopup(){
+  popup.classList.remove("active");
+}
+</script>
 
 </body>
 </html>
