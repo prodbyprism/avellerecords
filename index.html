@@ -9,11 +9,9 @@
   <!-- SEO -->
   <meta name="description" content="Avelle Records is a Swedish independent electronic record label. Submit your demo and join emerging artists in electronic music.">
 
-  <!-- Fonts (OPTIMIZED - no @import) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <!-- PRELOAD FONTS (TTF - optimized as much as possible) -->
+  <link rel="preload" href="/Fonts/Quicksand/Quicksand-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/Fonts/Allura/Allura-Regular.ttf" as="font" type="font/ttf" crossorigin>
 
   <style>
     *{
@@ -91,6 +89,7 @@
       text-align:center;
       overflow:hidden;
       padding:20px;
+      content-visibility: auto;
     }
 
     .hero::before{
@@ -102,6 +101,7 @@
       animation:gradientMove 15s ease infinite;
       z-index:-2;
       will-change: background-position;
+      transform: translateZ(0);
     }
 
     .hero::after{
