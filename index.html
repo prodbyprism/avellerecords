@@ -3,11 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>Avelle Records</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Allura&family=Quicksand:wght@300..700&display=swap');
+  <!-- SEO -->
+  <meta name="description" content="Avelle Records is a Swedish independent electronic record label. Submit your demo and join emerging artists in electronic music.">
 
+  <!-- Fonts (OPTIMIZED - no @import) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+  <style>
     *{
       margin:0;
       padding:0;
@@ -70,6 +78,10 @@
       opacity:1;
     }
 
+    main{
+      display:block;
+    }
+
     .hero{
       position:relative;
       height:100vh;
@@ -89,6 +101,7 @@
       background-size:400% 400%;
       animation:gradientMove 15s ease infinite;
       z-index:-2;
+      will-change: background-position;
     }
 
     .hero::after{
@@ -275,14 +288,8 @@
     }
 
     @keyframes pop{
-      from{
-        transform:scale(0.9);
-        opacity:0;
-      }
-      to{
-        transform:scale(1);
-        opacity:1;
-      }
+      from{transform:scale(0.9);opacity:0;}
+      to{transform:scale(1);opacity:1;}
     }
 
     .popup-box h2{
@@ -321,6 +328,8 @@
   </nav>
 </header>
 
+<main>
+
 <section class="hero">
   <div>
     <h1 id="title">
@@ -352,31 +361,31 @@
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
 
-      <label>Artist Name</label>
-      <input type="text" name="artist_name" required>
+      <label for="artist_name">Artist Name</label>
+      <input id="artist_name" type="text" name="artist_name" required>
 
-      <label>Email</label>
-      <input type="email" name="email" required>
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" required>
 
-      <label>Track Name</label>
-      <input type="text" name="track_name" required>
+      <label for="track_name">Track Name</label>
+      <input id="track_name" type="text" name="track_name" required>
 
-      <label>Genre</label>
-      <input type="text" name="genre">
+      <label for="genre">Genre</label>
+      <input id="genre" type="text" name="genre">
 
-      <label>Demo Link</label>
-      <input type="url" name="demo_link" required>
+      <label for="demo_link">Demo Link</label>
+      <input id="demo_link" type="url" name="demo_link" required>
 
-      <label>Message</label>
-      <textarea name="message" rows="6"></textarea>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6"></textarea>
 
-      <button type="submit">
-        Send Demo
-      </button>
+      <button type="submit">Send Demo</button>
 
     </form>
   </div>
 </section>
+
+</main>
 
 <footer>
   <p>© 2026 Avelle Records</p>
@@ -386,15 +395,8 @@
 <div class="popup" id="popup">
   <div class="popup-box">
     <h2>Thank You!</h2>
-
-    <p>
-      Your demo has been received.
-      We'll listen and get back if it's a fit.
-    </p>
-
-    <button onclick="closePopup()">
-      Close
-    </button>
+    <p>Your demo has been received. We'll listen and get back if it's a fit.</p>
+    <button onclick="closePopup()">Close</button>
   </div>
 </div>
 
@@ -403,13 +405,11 @@ const form = document.getElementById("demoForm");
 const popup = document.getElementById("popup");
 
 form.addEventListener("submit", async function(e){
-
   e.preventDefault();
 
   const formData = new FormData(form);
 
   try{
-
     await fetch(form.action,{
       method:"POST",
       body:formData
@@ -419,11 +419,8 @@ form.addEventListener("submit", async function(e){
     form.reset();
 
   }catch(error){
-
     alert("Something went wrong.");
-
   }
-
 });
 
 function closePopup(){
