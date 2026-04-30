@@ -54,9 +54,21 @@
       opacity:0.85;
     }
 
-    nav{display:flex;gap:30px;}
-    nav a{text-decoration:none;color:white;opacity:0.8;}
-    nav a:hover{opacity:1;}
+    nav{
+      display:flex;
+      gap:30px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:white;
+      opacity:0.8;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      opacity:1;
+    }
 
     .hero{
       position:relative;
@@ -102,14 +114,50 @@
       100%{transform:translateY(0);}
     }
 
-    #title{font-size:clamp(3rem,10vw,7rem);margin-bottom:20px;}
-    .hero-avelle{font-family:'Allura', cursive;font-size:1.2em;}
-    .subtitle{opacity:0.8;max-width:700px;margin:auto;line-height:1.8;}
+    #title{
+      font-size:clamp(3rem,10vw,7rem);
+      margin-bottom:20px;
+    }
 
-    .section{padding:120px 10%;}
-    .section-title{font-size:2.5rem;margin-bottom:50px;}
+    .hero-avelle{
+      font-family:'Allura', cursive;
+      font-size:1.2em;
+    }
 
-    /* FORM */
+    .subtitle{
+      opacity:0.8;
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+    }
+
+    .hero-button{
+      display:inline-block;
+      margin-top:35px;
+      padding:14px 28px;
+      border-radius:999px;
+      background:white;
+      color:black;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .hero-button:hover{
+      transform:scale(1.05);
+      opacity:0.9;
+    }
+
+    .section{
+      padding:120px 10%;
+    }
+
+    .section-title{
+      font-size:2.5rem;
+      margin-bottom:50px;
+      text-align:center;
+    }
+
     .demo-form-wrapper{
       max-width:700px;
       margin:auto;
@@ -140,6 +188,7 @@
       color:white;
       outline:none;
       transition:0.2s;
+      font-family:'Quicksand', sans-serif;
     }
 
     .demo-form input:focus,
@@ -159,6 +208,7 @@
       font-weight:600;
       cursor:pointer;
       transition:0.3s;
+      font-size:1rem;
     }
 
     .demo-form button:hover{
@@ -176,10 +226,25 @@
     }
 
     @media(max-width:900px){
-      nav{display:none;}
+      header{
+        padding:20px 24px;
+      }
+
+      nav{
+        display:none;
+      }
+
+      .avelle{
+        font-size:2.3rem;
+      }
+
+      .section{
+        padding:100px 24px;
+      }
     }
 
-    /* POPUP (THANK YOU MODAL) */
+    /* POPUP */
+
     .popup{
       position:fixed;
       inset:0;
@@ -205,12 +270,19 @@
       border-radius:24px;
       text-align:center;
       max-width:400px;
+      width:90%;
       animation:pop 0.3s ease;
     }
 
     @keyframes pop{
-      from{transform:scale(0.9);opacity:0;}
-      to{transform:scale(1);opacity:1;}
+      from{
+        transform:scale(0.9);
+        opacity:0;
+      }
+      to{
+        transform:scale(1);
+        opacity:1;
+      }
     }
 
     .popup-box h2{
@@ -243,28 +315,42 @@
     <span class="avelle">Avelle</span>
     <span class="records">RECORDS</span>
   </div>
+
   <nav>
     <a href="#demos">Submit Demo</a>
-    <a href="#">Releases</a>
-    <a href="#">News</a>
   </nav>
 </header>
 
 <section class="hero">
   <div>
-    <h1 id="title"><span class="hero-avelle">Avelle</span> Records</h1>
-    <p class="subtitle">Electronic record label based in Sweden.</p>
+    <h1 id="title">
+      <span class="hero-avelle">Avelle</span> Records
+    </h1>
+
+    <p class="subtitle">
+      Electronic record label based in Sweden.
+    </p>
+
+    <a href="#demos" class="hero-button">
+      Send Us A Demo
+    </a>
   </div>
 </section>
 
-<!-- FORM -->
 <section class="section" id="demos">
   <h2 class="section-title">Submit Your Demo</h2>
 
   <div class="demo-form-wrapper">
-    <form id="demoForm" action="https://formsubmit.co/prism@prodbyprism.com" method="POST" class="demo-form">
+
+    <form 
+      id="demoForm"
+      action="https://formsubmit.co/prism@prodbyprism.com"
+      method="POST"
+      class="demo-form"
+    >
 
       <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
 
       <label>Artist Name</label>
       <input type="text" name="artist_name" required>
@@ -284,7 +370,10 @@
       <label>Message</label>
       <textarea name="message" rows="6"></textarea>
 
-      <button type="submit">Send Demo</button>
+      <button type="submit">
+        Send Demo
+      </button>
+
     </form>
   </div>
 </section>
@@ -294,12 +383,18 @@
   <p>Designed for music.</p>
 </footer>
 
-<!-- POPUP -->
 <div class="popup" id="popup">
   <div class="popup-box">
     <h2>Thank You!</h2>
-    <p>Your demo has been received. We'll listen and get back if it's a fit.</p>
-    <button onclick="closePopup()">Close</button>
+
+    <p>
+      Your demo has been received.
+      We'll listen and get back if it's a fit.
+    </p>
+
+    <button onclick="closePopup()">
+      Close
+    </button>
   </div>
 </div>
 
@@ -307,11 +402,28 @@
 const form = document.getElementById("demoForm");
 const popup = document.getElementById("popup");
 
-form.addEventListener("submit", function(){
-  setTimeout(() => {
+form.addEventListener("submit", async function(e){
+
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  try{
+
+    await fetch(form.action,{
+      method:"POST",
+      body:formData
+    });
+
     popup.classList.add("active");
     form.reset();
-  }, 300);
+
+  }catch(error){
+
+    alert("Something went wrong.");
+
+  }
+
 });
 
 function closePopup(){
