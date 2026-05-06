@@ -71,7 +71,6 @@
       font-size:1.1rem;
     }
 
-    /* HAMBURGER */
     .hamburger{
       position:absolute;
       right:30px;
@@ -103,7 +102,6 @@
       transform:translateY(-8px) rotate(-45deg);
     }
 
-    /* MENU */
     .menu{
       position:fixed;
       top:0;
@@ -162,6 +160,7 @@
       font-weight:300;
     }
 
+    /* HERO */
     .hero{
       position:relative;
       height:100vh;
@@ -216,6 +215,102 @@
       background:white;
       color:black;
     }
+
+    /* SECTIONS */
+    .section{
+      padding:120px 10%;
+      border-top:1px solid rgba(255,255,255,0.06);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      position:relative;
+    }
+
+    .section::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:1px;
+      background:linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+    }
+
+    .section::after{
+      content:"";
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      height:1px;
+      background:linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+    }
+
+    .section-title{
+      font-family:'Anton', sans-serif;
+      font-size:clamp(2rem, 5vw, 3.5rem);
+      font-weight:400;
+      text-align:center;
+      margin-top:-50px;
+      margin-bottom:50px;
+      line-height:1.2;
+    }
+
+    .about-wrapper{
+      max-width:800px;
+      margin:auto;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      opacity:0.9;
+      font-size:1.1rem;
+      line-height:1.7;
+    }
+
+    .about-wrapper p{
+      color:rgba(255,255,255,0.85);
+    }
+
+    .demo-form-wrapper{
+      max-width:700px;
+      margin:auto;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:24px;
+      padding:40px;
+      backdrop-filter:blur(16px);
+    }
+
+    .demo-form{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .demo-form input,
+    .demo-form textarea{
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.15);
+      background:rgba(20,20,20,0.95);
+      color:white;
+      outline:none;
+    }
+
+    .demo-form button{
+      margin-top:35px;
+      padding:14px 28px;
+      background:transparent;
+      color:white;
+      font-weight:600;
+      border:1px solid rgba(255,255,255,0.8);
+      transition:0.3s ease;
+      cursor:pointer;
+    }
+
+    .demo-form button:hover{
+      background:white;
+      color:black;
+    }
   </style>
 </head>
 
@@ -262,18 +357,15 @@
 </video>
 
   <div>
-    <h1 id="title">
-      Swedish electronic and pop record label.
-    </h1>
+    <h1 id="title">Swedish electronic and pop record label.</h1>
 
-    <a href="#demos" class="hero-button">
-      Send Us A Demo
-    </a>
+    <a href="#demos" class="hero-button">Send Us A Demo</a>
   </div>
 </section>
 
 <section class="section" id="about">
   <h2 class="section-title">About Us</h2>
+
   <div class="about-wrapper">
     <p>
       Avelle Records is a Swedish independent label focused on electronic and pop music.
@@ -318,19 +410,13 @@ hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("active");
   menu.classList.toggle("active");
 
-  if(menu.classList.contains("active")){
-    document.body.classList.add("menu-open");
-  } else {
-    document.body.classList.remove("menu-open");
-  }
+  document.body.classList.toggle("menu-open", menu.classList.contains("active"));
 });
 
-links.forEach(link => {
-  link.addEventListener("click", closeMenu);
-});
+links.forEach(link => link.addEventListener("click", closeMenu));
 
-const stripe = document.getElementById("stripe");
 const header = document.querySelector("header");
+const stripe = document.getElementById("stripe");
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
