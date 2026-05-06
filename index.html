@@ -6,6 +6,16 @@
 
   <title>Avelle Records</title>
 
+  <!-- PWA / ICONS -->
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16.png">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+
+  <meta name="theme-color" content="#000000">
+
+  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -26,7 +36,7 @@
       overflow-x:hidden;
     }
 
-    /* HEADER (OVERLAY, DOES NOT PUSH CONTENT) */
+    /* HEADER (OVERLAY) */
     header{
       position:absolute;
       top:0;
@@ -83,7 +93,6 @@
       letter-spacing:3px;
       color:white;
       font-size:0.9rem;
-      font-weight:300;
     }
 
     /* HERO */
@@ -120,7 +129,6 @@
       font-family:'Anton', sans-serif;
       font-size:clamp(2rem, 5vw, 3.5rem);
       margin-bottom:16px;
-      font-weight:400;
       line-height:1.2;
     }
 
@@ -247,9 +255,7 @@
 <script>
 const header = document.getElementById("header");
 const stripe = document.getElementById("stripe");
-const hero = document.getElementById("hero");
 
-/* Show stripe when header leaves viewport */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
