@@ -33,12 +33,17 @@
       overflow-x:hidden;
     }
 
+    /* LOCK SCROLL WHEN MENU OPEN */
+    body.menu-open{
+      overflow:hidden;
+    }
+
     header{
       position:absolute;
       top:0;
       left:0;
       width:100%;
-      padding:24px 0;
+      padding:24px 30px;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -62,6 +67,68 @@
       letter-spacing:4px;
       opacity:0.85;
       font-size:1.1rem;
+    }
+
+    /* HAMBURGER */
+    .hamburger{
+      position:absolute;
+      right:30px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:6px;
+      cursor:pointer;
+      z-index:1100;
+    }
+
+    .hamburger span{
+      width:28px;
+      height:2px;
+      background:white;
+      transition:0.3s ease;
+      transform-origin:center;
+    }
+
+    .hamburger.active span:nth-child(1){
+      transform:translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2){
+      opacity:0;
+    }
+
+    .hamburger.active span:nth-child(3){
+      transform:translateY(-8px) rotate(-45deg);
+    }
+
+    /* MENU */
+    .menu{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100vh;
+      background:black;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:30px;
+      transform:translateY(-100%);
+      transition:0.4s ease;
+      z-index:999;
+    }
+
+    .menu.active{
+      transform:translateY(0);
+    }
+
+    .menu a{
+      color:white;
+      text-decoration:none;
+      font-size:2rem;
+      font-family:'Anton', sans-serif;
+      letter-spacing:2px;
     }
 
     .stripe{
@@ -140,12 +207,13 @@
       font-weight:600;
       border:1px solid rgba(255,255,255,0.8);
       transition:0.3s ease;
-cursor: pointer;
+      cursor:pointer;
     }
 
     .hero-button:hover{
       background:white;
       color:black;
+      transform:scale(1.05);
     }
 
     .section{
@@ -233,14 +301,13 @@ cursor: pointer;
       border-radius:0px;
       background:transparent;
       color:white;
-      text-decoration:none;
       font-weight:600;
       border:1px solid rgba(255,255,255,0.8);
       transition:0.3s ease;
-cursor: pointer;
+      cursor:pointer;
     }
 
-.demo-form button:hover {
+    .demo-form button:hover{
       background:white;
       color:black;
     }
@@ -254,7 +321,19 @@ cursor: pointer;
     <span class="avelle">Avelle</span>
     <span class="records">RECORDS</span>
   </div>
+
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </header>
+
+<div class="menu" id="menu">
+  <a href="#hero">Home</a>
+  <a href="#about">About</a>
+  <a href="#demos">Demo</a>
+</div>
 
 <div class="stripe" id="stripe">
   <span>AVELLE RECORDS</span>
@@ -273,7 +352,7 @@ cursor: pointer;
   webkit-playsinline
   preload="auto"
 >
-  <source src="https://raw.githubusercontent.com/prodbyprism/avellerecords/main/Videos/hero.mp4" type="video/mp4">
+  <source src="https://github.com/prodbyprism/avellerecords/raw/refs/heads/main/videos/hero.mp4" type="video/mp4">
 </video>
 
   <div>
@@ -324,6 +403,33 @@ cursor: pointer;
 </main>
 
 <script>
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("menu");
+const links = document.querySelectorAll(".menu a");
+
+function closeMenu(){
+  hamburger.classList.remove("active");
+  menu.classList.remove("active");
+  document.body.classList.remove("menu-open");
+}
+
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  menu.classList.toggle("active");
+
+  if(menu.classList.contains("active")){
+    document.body.classList.add("menu-open");
+  } else {
+    document.body.classList.remove("menu-open");
+  }
+});
+
+links.forEach(link => {
+  link.addEventListener("click", () => {
+    closeMenu();
+  });
+});
+
 const header = document.getElementById("header");
 const stripe = document.getElementById("stripe");
 
