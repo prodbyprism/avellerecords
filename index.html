@@ -6,10 +6,8 @@
 
   <title>Avelle Records</title>
 
-  <!-- SEO -->
   <meta name="description" content="Avelle Records is a Swedish independent electronic & pop record label. Submit your demo and join emerging artists.">
 
-  <!-- Fonts (OPTIMIZED - no @import) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -30,19 +28,24 @@
       overflow-x:hidden;
     }
 
+    /* HEADER */
+
     header{
       position:fixed;
       top:0;
       left:0;
       width:100%;
-      padding:24px 60px;
+      padding:24px 0;
       display:flex;
-      justify-content:space-between;
+      justify-content:center;
       align-items:center;
       z-index:1000;
-      background:rgba(0,0,0,0.35);
-      backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(255,255,255,0.08);
+      background:transparent;
+      transition:transform 0.4s ease;
+    }
+
+    header.hide{
+      transform:translateY(-100%);
     }
 
     .logo{
@@ -62,25 +65,54 @@
       opacity:0.85;
     }
 
-    nav{
+    /* HAMBURGER */
+
+    .hamburger{
+      position:absolute;
+      right:30px;
       display:flex;
-      gap:30px;
+      flex-direction:column;
+      gap:6px;
+      cursor:pointer;
     }
 
-    nav a{
-      text-decoration:none;
-      color:white;
-      opacity:0.8;
+    .hamburger span{
+      width:25px;
+      height:2px;
+      background:white;
       transition:0.3s;
     }
 
-    nav a:hover{
-      opacity:1;
+    /* MOBILE MENU */
+
+    .mobile-menu{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100vh;
+      background:black;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      gap:30px;
+      transform:translateY(-100%);
+      transition:0.4s;
+      z-index:999;
     }
 
-    main{
-      display:block;
+    .mobile-menu.active{
+      transform:translateY(0);
     }
+
+    .mobile-menu a{
+      color:white;
+      font-size:2rem;
+      text-decoration:none;
+    }
+
+    /* HERO */
 
     .hero{
       position:relative;
@@ -101,7 +133,6 @@
       background-size:400% 400%;
       animation:gradientMove 15s ease infinite;
       z-index:-2;
-      will-change: background-position;
     }
 
     .hero::after{
@@ -161,6 +192,8 @@
       opacity:0.9;
     }
 
+    /* SECTION */
+
     .section{
       padding:120px 10%;
     }
@@ -200,15 +233,6 @@
       background:rgba(20,20,20,0.95);
       color:white;
       outline:none;
-      transition:0.2s;
-      font-family:'Quicksand', sans-serif;
-    }
-
-    .demo-form input:focus,
-    .demo-form textarea:focus{
-      border-color:#fff;
-      background:rgba(35,35,35,0.95);
-      box-shadow:0 0 0 2px rgba(255,255,255,0.08);
     }
 
     .demo-form button{
@@ -220,13 +244,6 @@
       color:black;
       font-weight:600;
       cursor:pointer;
-      transition:0.3s;
-      font-size:1rem;
-    }
-
-    .demo-form button:hover{
-      transform:scale(1.03);
-      opacity:0.9;
     }
 
     footer{
@@ -236,24 +253,6 @@
       justify-content:space-between;
       flex-wrap:wrap;
       opacity:0.6;
-    }
-
-    @media(max-width:900px){
-      header{
-        padding:20px 24px;
-      }
-
-      nav{
-        display:none;
-      }
-
-      .avelle{
-        font-size:2.3rem;
-      }
-
-      .section{
-        padding:100px 24px;
-      }
     }
 
     /* POPUP */
@@ -278,55 +277,31 @@
 
     .popup-box{
       background:#111;
-      border:1px solid rgba(255,255,255,0.1);
       padding:40px;
       border-radius:24px;
       text-align:center;
-      max-width:400px;
-      width:90%;
-      animation:pop 0.3s ease;
-    }
-
-    @keyframes pop{
-      from{transform:scale(0.9);opacity:0;}
-      to{transform:scale(1);opacity:1;}
-    }
-
-    .popup-box h2{
-      font-size:2rem;
-      margin-bottom:10px;
-    }
-
-    .popup-box p{
-      opacity:0.7;
-      margin-bottom:20px;
-      line-height:1.6;
-    }
-
-    .popup-box button{
-      padding:12px 20px;
-      border-radius:999px;
-      border:none;
-      background:white;
-      color:black;
-      cursor:pointer;
-      font-weight:600;
     }
   </style>
 </head>
 
 <body>
 
-<header>
+<header id="header">
   <div class="logo">
     <span class="avelle">Avelle</span>
     <span class="records">RECORDS</span>
   </div>
 
-  <nav>
-    <a href="#demos">Submit Demo</a>
-  </nav>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#demos">Submit Demo</a>
+</div>
 
 <main>
 
@@ -337,7 +312,7 @@
     </h1>
 
     <p class="subtitle">
-Electronic & Pop record label based in Sweden.
+      Electronic & Pop record label based in Sweden.
     </p>
 
     <a href="#demos" class="hero-button">
@@ -350,57 +325,59 @@ Electronic & Pop record label based in Sweden.
   <h2 class="section-title">Submit Your Demo</h2>
 
   <div class="demo-form-wrapper">
-
-    <form 
-      id="demoForm"
-      action="https://formsubmit.co/avellerecords@gmail.com"
-      method="POST"
-      class="demo-form"
-    >
-
+    <form id="demoForm" action="https://formsubmit.co/avellerecords@gmail.com" method="POST" class="demo-form">
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
 
-      <label for="artist_name">Artist Name</label>
-      <input id="artist_name" type="text" name="artist_name" required>
+      <input type="text" name="artist_name" placeholder="Artist Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="track_name" placeholder="Track Name" required>
+      <input type="url" name="demo_link" placeholder="Demo Link" required>
 
-      <label for="email">Email</label>
-      <input id="email" type="email" name="email" required>
-
-      <label for="track_name">Track Name</label>
-      <input id="track_name" type="text" name="track_name" required>
-
-      <label for="genre">Genre</label>
-      <input id="genre" type="text" name="genre">
-
-      <label for="demo_link">Demo Link</label>
-      <input id="demo_link" type="url" name="demo_link" required>
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="6"></textarea>
+      <textarea name="message" rows="5" placeholder="Message"></textarea>
 
       <button type="submit">Send Demo</button>
-
     </form>
   </div>
 </section>
 
 </main>
 
-<footer>
-  <p>© 2026 Avelle Records</p>
-  <p>Designed for music.</p>
-</footer>
-
 <div class="popup" id="popup">
   <div class="popup-box">
     <h2>Thank You!</h2>
-    <p>Your demo has been received. We'll listen and get back if it's a fit.</p>
     <button onclick="closePopup()">Close</button>
   </div>
 </div>
 
 <script>
+const header = document.getElementById("header");
+let lastScroll = 0;
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > lastScroll && currentScroll > 50) {
+    header.classList.add("hide");
+  } else {
+    header.classList.remove("hide");
+  }
+
+  lastScroll = currentScroll;
+});
+
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+
+hamburger.addEventListener("click", () => {
+  mobileMenu.classList.toggle("active");
+});
+
+document.querySelectorAll(".mobile-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("active");
+  });
+});
+
 const form = document.getElementById("demoForm");
 const popup = document.getElementById("popup");
 
@@ -409,18 +386,10 @@ form.addEventListener("submit", async function(e){
 
   const formData = new FormData(form);
 
-  try{
-    await fetch(form.action,{
-      method:"POST",
-      body:formData
-    });
+  await fetch(form.action,{ method:"POST", body:formData });
 
-    popup.classList.add("active");
-    form.reset();
-
-  }catch(error){
-    alert("Something went wrong.");
-  }
+  popup.classList.add("active");
+  form.reset();
 });
 
 function closePopup(){
