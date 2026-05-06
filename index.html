@@ -6,7 +6,6 @@
 
   <title>Avelle Records</title>
 
-  <!-- PWA ICONS + MANIFEST -->
   <link rel="manifest" href="manifest.json">
 
   <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
@@ -50,18 +49,19 @@
     .logo{
       display:flex;
       align-items:center;
-      gap:8px;
+      gap:10px;
     }
 
     .avelle{
       font-family:'Allura', cursive;
-      font-size:2.5rem;
+      font-size:3rem;
     }
 
     .records{
       font-weight:300;
-      letter-spacing:3px;
+      letter-spacing:4px;
       opacity:0.85;
+      font-size:1.1rem;
     }
 
     .stripe{
@@ -133,27 +133,71 @@
       display:inline-block;
       margin-top:35px;
       padding:14px 28px;
-      border-radius:999px;
-      background:white;
-      color:black;
+      border-radius:0px;
+      background:transparent;
+      color:white;
       text-decoration:none;
       font-weight:600;
-      transition:0.3s;
+      border:1px solid rgba(255,255,255,0.8);
+      transition:0.3s ease;
+cursor: pointer;
     }
 
     .hero-button:hover{
-      transform:scale(1.05);
-      opacity:0.9;
+      background:white;
+      color:black;
     }
 
     .section{
       padding:120px 10%;
+      border-top:1px solid rgba(255,255,255,0.06);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      position:relative;
+    }
+
+    .section::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:1px;
+      background:linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+    }
+
+    .section::after{
+      content:"";
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      height:1px;
+      background:linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
     }
 
     .section-title{
-      font-size:2.5rem;
-      margin-bottom:50px;
+      font-family:'Anton', sans-serif;
+      font-size:clamp(2rem, 5vw, 3.5rem);
+      margin-bottom:16px;
+      font-weight:400;
+      line-height:1.2;
       text-align:center;
+    }
+
+    .about-wrapper{
+      max-width:800px;
+      margin:auto;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      opacity:0.9;
+      font-size:1.1rem;
+      line-height:1.7;
+    }
+
+    .about-wrapper p{
+      color:rgba(255,255,255,0.85);
     }
 
     .demo-form-wrapper{
@@ -183,14 +227,22 @@
     }
 
     .demo-form button{
-      margin-top:10px;
-      padding:14px;
-      border:none;
-      border-radius:999px;
+      display:inline-block;
+      margin-top:35px;
+      padding:14px 28px;
+      border-radius:0px;
+      background:transparent;
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      border:1px solid rgba(255,255,255,0.8);
+      transition:0.3s ease;
+cursor: pointer;
+    }
+
+.demo-form button:hover {
       background:white;
       color:black;
-      font-weight:600;
-      cursor:pointer;
     }
   </style>
 </head>
@@ -221,7 +273,7 @@
   webkit-playsinline
   preload="auto"
 >
-  <source src="https://raw.githubusercontent.com/prodbyprism/avellerecords/main/Videos/hero.mp4" type="video/mp4">
+  <source src="Videos/hero.mp4" type="video/mp4">
 </video>
 
   <div>
@@ -232,6 +284,21 @@
     <a href="#demos" class="hero-button">
       Send Us A Demo
     </a>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2 class="section-title">About Us</h2>
+
+  <div class="about-wrapper">
+    <p>
+      Avelle Records is a Swedish independent label focused on electronic and pop music.
+      We work with new and established artists around the world.
+    </p>
+
+    <p>
+      Our goal is simple: build timeless music, not trends.
+    </p>
   </div>
 </section>
 
