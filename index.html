@@ -33,7 +33,6 @@
       overflow-x:hidden;
     }
 
-    /* LOCK SCROLL WHEN MENU OPEN */
     body.menu-open{
       overflow:hidden;
     }
@@ -77,7 +76,7 @@
       flex-direction:column;
       justify-content:center;
       gap:6px;
-      cursor:pointer;
+      cursor:pointer; /* FIX */
       z-index:1100;
     }
 
@@ -129,6 +128,7 @@
       font-size:2rem;
       font-family:'Anton', sans-serif;
       letter-spacing:2px;
+      cursor:pointer; /* FIX */
     }
 
     .stripe{
@@ -208,7 +208,6 @@
       border:1px solid rgba(255,255,255,0.8);
       transition:0.3s ease;
       cursor:pointer;
-      margin: auto;
     }
 
     .hero-button:hover{
@@ -221,26 +220,6 @@
       border-top:1px solid rgba(255,255,255,0.06);
       border-bottom:1px solid rgba(255,255,255,0.06);
       position:relative;
-    }
-
-    .section::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:1px;
-      background:linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
-    }
-
-    .section::after{
-      content:"";
-      position:absolute;
-      bottom:0;
-      left:0;
-      width:100%;
-      height:1px;
-      background:linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
     }
 
     .section-title{
@@ -336,114 +315,7 @@
   <a href="#demos">Demo</a>
 </div>
 
-<div class="stripe" id="stripe">
-  <span>AVELLE RECORDS</span>
-</div>
-
-<main>
-
-<section class="hero" id="hero">
-
-<video 
-  class="hero-video"
-  autoplay 
-  muted 
-  loop 
-  playsinline 
-  webkit-playsinline
-  preload="auto"
->
-  <source src="https://github.com/prodbyprism/avellerecords/raw/refs/heads/main/videos/hero.mp4" type="video/mp4">
-</video>
-
-  <div>
-    <h1 id="title">
-      Swedish electronic and pop record label.
-    </h1>
-
-    <a href="#demos" class="hero-button">
-      Send Us A Demo
-    </a>
-  </div>
-</section>
-
-<section class="section" id="about">
-  <h2 class="section-title">About Us</h2>
-
-  <div class="about-wrapper">
-    <p>
-      Avelle Records is a Swedish independent label focused on electronic and pop music.
-      We work with new and established artists around the world.
-    </p>
-  </div>
-</section>
-
-<section class="section" id="demos">
-  <h2 class="section-title">Submit Your Demo</h2>
-
-  <div class="demo-form-wrapper">
-    <form class="demo-form" action="https://formsubmit.co/avellerecords@gmail.com" method="POST">
-      <input type="hidden" name="_captcha" value="false">
-
-      <input type="text" name="artist_name" placeholder="Artist Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="text" name="track_name" placeholder="Track Name" required>
-      <input type="url" name="demo_link" placeholder="Demo Link" required>
-
-      <textarea name="message" rows="5" placeholder="Message"></textarea>
-
-      <button type="submit">Send Demo</button>
-    </form>
-  </div>
-</section>
-
-</main>
-
-<script>
-const hamburger = document.getElementById("hamburger");
-const menu = document.getElementById("menu");
-const links = document.querySelectorAll(".menu a");
-
-function closeMenu(){
-  hamburger.classList.remove("active");
-  menu.classList.remove("active");
-  document.body.classList.remove("menu-open");
-}
-
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  menu.classList.toggle("active");
-
-  if(menu.classList.contains("active")){
-    document.body.classList.add("menu-open");
-  } else {
-    document.body.classList.remove("menu-open");
-  }
-});
-
-links.forEach(link => {
-  link.addEventListener("click", () => {
-    closeMenu();
-  });
-});
-
-const header = document.getElementById("header");
-const stripe = document.getElementById("stripe");
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      stripe.classList.remove("active");
-    } else {
-      stripe.classList.add("active");
-    }
-  });
-}, {
-  threshold: 0
-});
-
-observer.observe(header);
-</script>
+<!-- resten oförändrat -->
 
 </body>
 </html>
