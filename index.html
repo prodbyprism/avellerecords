@@ -193,25 +193,31 @@
     #title{
       font-family:'Anton', sans-serif;
       font-size:clamp(2rem, 5vw, 3.5rem);
-      margin-bottom:16px;
+      margin-bottom:24px;
       font-weight:400;
       line-height:1.2;
     }
 
-    .hero-button{
-      display:inline-block;
-      margin: auto;
-      padding:14px 28px;
-      background:transparent;
+    .social-buttons{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .social-button{
+      padding:14px 24px;
+      border:1px solid rgba(255,255,255,0.8);
       color:white;
       text-decoration:none;
       font-weight:600;
-      border:1px solid rgba(255,255,255,0.8);
       transition:0.3s ease;
-      cursor:pointer;
+      background:rgba(255,255,255,0.04);
+      backdrop-filter:blur(12px);
     }
 
-    .hero-button:hover{
+    .social-button:hover{
       background:white;
       color:black;
     }
@@ -311,6 +317,40 @@
       background:white;
       color:black;
     }
+
+    @media(max-width:768px){
+
+      header{
+        padding:20px;
+      }
+
+      .avelle{
+        font-size:2.4rem;
+      }
+
+      .records{
+        font-size:0.9rem;
+        letter-spacing:3px;
+      }
+
+      .hamburger{
+        right:20px;
+      }
+
+      .social-buttons{
+        flex-direction:column;
+        width:100%;
+      }
+
+      .social-button{
+        width:100%;
+        max-width:280px;
+      }
+
+      .demo-form-wrapper{
+        padding:28px;
+      }
+    }
   </style>
 </head>
 
@@ -359,7 +399,21 @@
   <div>
     <h1 id="title">Swedish electronic and pop record label.</h1>
 
-    <a href="#demos" class="hero-button">Send Us A Demo</a>
+    <div class="social-buttons">
+
+      <a href="https://instagram.com/avelle.records" target="_blank" class="social-button">
+        Instagram
+      </a>
+
+      <a href="https://open.spotify.com" target="_blank" class="social-button">
+        Spotify
+      </a>
+
+      <a href="https://soundcloud.com" target="_blank" class="social-button">
+        SoundCloud
+      </a>
+
+    </div>
   </div>
 </section>
 
