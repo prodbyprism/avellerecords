@@ -18,8 +18,10 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Quicksand:wght@300..700&family=Allura&display=swap" rel="stylesheet">
 
-  <!-- Cookiebot -->
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="df68f618-ecdf-4685-90d1-ac276db796d4" data-blockingmode="auto" type="text/javascript"></script>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js"
+    data-cbid="df68f618-ecdf-4685-90d1-ac276db796d4"
+    data-blockingmode="auto"
+    type="text/javascript"></script>
 
   <style>
     *{
@@ -199,7 +201,6 @@
     }
 
     /* SOCIAL BUTTONS */
-
     .social-buttons{
       display:flex;
       justify-content:center;
@@ -222,14 +223,14 @@
       height:24px;
       object-fit:contain;
       filter:invert(1);
+      transition:0.25s ease;
     }
 
-.social-button:hover{
-    color: #d9d9d9;
-}
+    .social-button:hover img{
+      transform:scale(1.12);
+    }
 
-    /* SECTIONS */
-
+    /* SECTIONS + BORDERS */
     .section{
       padding:120px 10%;
       border-top:1px solid rgba(255,255,255,0.06);
@@ -237,50 +238,36 @@
       position:relative;
     }
 
-    .section::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:1px;
-      background:linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
-    }
-
+    .section::before,
     .section::after{
       content:"";
       position:absolute;
-      bottom:0;
       left:0;
       width:100%;
       height:1px;
-      background:linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+      background:linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent);
     }
+
+    .section::before{ top:0; }
+    .section::after{ bottom:0; }
 
     .section-title{
       font-family:'Anton', sans-serif;
       font-size:clamp(2rem, 5vw, 3.5rem);
       font-weight:400;
-      text-align:center;
-      margin-top:-50px;
-      margin-bottom:50px;
       line-height:1.2;
+      text-align:center;
+      margin-bottom:20px;
+margin-top:  -50px;
     }
 
     .about-wrapper{
       max-width:800px;
       margin:auto;
       text-align:center;
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-      opacity:0.9;
       font-size:1.1rem;
       line-height:1.7;
-    }
-
-    .about-wrapper p{
-      color:rgba(255,255,255,0.85);
+      opacity:0.9;
     }
 
     .demo-form-wrapper{
@@ -310,14 +297,13 @@
     }
 
     .demo-form button{
-      margin-top:35px;
+      margin-top:20px;
       padding:14px 28px;
       background:transparent;
       color:white;
-      font-weight:600;
-      border:1px solid rgba(255,255,255,0.8);
-      transition:0.3s ease;
+      border:1px solid white;
       cursor:pointer;
+      transition:0.3s ease;
     }
 
     .demo-form button:hover{
@@ -325,36 +311,86 @@
       color:black;
     }
 
+    /* SCROLL REVEAL */
+    .reveal{
+      opacity:0;
+      transform:translateY(50px);
+      transition:opacity 0.8s ease, transform 0.8s ease;
+      will-change:opacity, transform;
+    }
+
+    .reveal.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* subtle stagger feel for social */
+    .social-buttons.reveal{
+      transition-delay:0.25s;
+    }
+
+    /* FOOTER (NO REVEAL) */
+    .footer{
+      padding:80px 10% 40px;
+      border-top:1px solid rgba(255,255,255,0.08);
+      background:black;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:40px;
+    }
+
+    .footer-brand{
+      font-family:'Anton', sans-serif;
+      font-size:1.6rem;
+      letter-spacing:2px;
+    }
+
+    .footer-sub{
+      opacity:0.6;
+      margin-top:6px;
+      font-size:0.95rem;
+    }
+
+    .footer-links,
+    .footer-right{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .footer-links a,
+    .footer-right a{
+      color:white;
+      text-decoration:none;
+      opacity:0.7;
+      font-size:0.95rem;
+      transition:0.2s ease;
+    }
+
+    .footer-links a:hover,
+    .footer-right a:hover{
+      opacity:1;
+    }
+
+    .footer-bottom{
+      margin-top:50px;
+      text-align:center;
+      font-size:0.85rem;
+      opacity:0.5;
+      border-top:1px solid rgba(255,255,255,0.06);
+      padding-top:20px;
+    }
+
     @media(max-width:768px){
+      .avelle{font-size:2.4rem;}
+      .records{font-size:0.9rem;}
 
-      header{
-        padding:20px;
-      }
-
-      .avelle{
-        font-size:2.4rem;
-      }
-
-      .records{
-        font-size:0.9rem;
-        letter-spacing:3px;
-      }
-
-      .hamburger{
-        right:20px;
-      }
-
-      .social-buttons{
-        gap:18px;
-      }
-
-      .social-button{
-        width:52px;
-        height:52px;
-      }
-
-      .demo-form-wrapper{
-        padding:28px;
+      .footer-inner{
+        flex-direction:column;
       }
     }
   </style>
@@ -388,67 +424,47 @@
 <main>
 
 <section class="hero" id="hero">
-
-<video 
-  class="hero-video"
-  autoplay 
-  muted 
-  loop 
-  playsinline 
-  webkit-playsinline
-  preload="auto"
-  data-cookieconsent="ignore"
->
-  <source src="https://github.com/prodbyprism/avellerecords/raw/refs/heads/main/videos/hero.mp4" type="video/mp4">
-</video>
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="https://github.com/prodbyprism/avellerecords/raw/refs/heads/main/videos/hero.mp4">
+  </video>
 
   <div>
-    <h1 id="title">Swedish electronic and pop record label.</h1>
+    <h1 id="title" class="reveal">Swedish electronic and pop record label.</h1>
 
-    <div class="social-buttons">
-
+    <div class="social-buttons reveal">
       <a href="https://youtube.com/@avellerecords" target="_blank" class="social-button">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg">
       </a>
 
-      
       <a href="https://tiktok.com/@avellerecords" target="_blank" class="social-button">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg">
       </a>
 
       <a href="https://instagram.com/avelle.records" target="_blank" class="social-button">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg">
       </a>
-
     </div>
   </div>
 </section>
 
 <section class="section" id="about">
-  <h2 class="section-title">About Us</h2>
-
-  <div class="about-wrapper">
-    <p>
-      Avelle Records is a Swedish independent label focused on electronic and pop music.
-      We work with new and established artists around the world.
-    </p>
+  <h2 class="section-title reveal">About Us</h2>
+  <div class="about-wrapper reveal">
+    Avelle Records is a Swedish independent label focused on electronic and pop music. <br>
+    We work with new and established artists around the world.
   </div>
 </section>
 
 <section class="section" id="demos">
-  <h2 class="section-title">Submit Your Demo</h2>
+  <h2 class="section-title reveal">Submit Your Demo</h2>
 
-  <div class="demo-form-wrapper">
-    <form class="demo-form" action="https://formsubmit.co/avellerecords@gmail.com" method="POST">
-      <input type="hidden" name="_captcha" value="false">
-
-      <input type="text" name="artist_name" placeholder="Artist Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="text" name="track_name" placeholder="Track Name" required>
-      <input type="url" name="demo_link" placeholder="Demo Link" required>
-
-      <textarea name="message" rows="5" placeholder="Message"></textarea>
-
+  <div class="demo-form-wrapper reveal">
+    <form class="demo-form">
+      <input type="text" placeholder="Artist Name">
+      <input type="email" placeholder="Email">
+      <input type="text" placeholder="Track Name">
+      <input type="url" placeholder="Demo Link">
+      <textarea rows="5" placeholder="Message"></textarea>
       <button type="submit">Send Demo</button>
     </form>
   </div>
@@ -456,36 +472,67 @@
 
 </main>
 
+<footer class="footer">
+  <div class="footer-inner">
+
+    <div>
+      <div class="footer-brand">Avelle Records</div>
+      <div class="footer-sub">Swedish electronic & pop label</div>
+    </div>
+
+    <div class="footer-links">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#demos">Demo</a>
+    </div>
+
+    <div class="footer-right">
+      <a href="https://instagram.com/avelle.records" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@avellerecords" target="_blank">TikTok</a>
+      <a href="https://youtube.com/@avellerecords" target="_blank">YouTube</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © <span id="year"></span> Avelle Records. All rights reserved.
+  </div>
+</footer>
+
 <script>
 const hamburger = document.getElementById("hamburger");
 const menu = document.getElementById("menu");
-const links = document.querySelectorAll(".menu a");
-
-function closeMenu(){
-  hamburger.classList.remove("active");
-  menu.classList.remove("active");
-  document.body.classList.remove("menu-open");
-}
 
 hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("active");
   menu.classList.toggle("active");
-
-  document.body.classList.toggle("menu-open", menu.classList.contains("active"));
+  document.body.classList.toggle("menu-open");
 });
 
-links.forEach(link => link.addEventListener("click", closeMenu));
+document.getElementById("year").textContent = new Date().getFullYear();
 
-const header = document.querySelector("header");
+/* STRIPE */
 const stripe = document.getElementById("stripe");
-
-const observer = new IntersectionObserver((entries) => {
+const headerObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     stripe.classList.toggle("active", !entry.isIntersecting);
   });
 });
+headerObserver.observe(document.querySelector("header"));
 
-observer.observe(header);
+/* SCROLL REVEAL */
+const revealElements = document.querySelectorAll(".reveal");
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("active");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+revealElements.forEach(el => revealObserver.observe(el));
 </script>
 
 </body>
