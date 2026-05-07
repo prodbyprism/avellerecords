@@ -162,7 +162,6 @@
       font-weight:300;
     }
 
-    /* HERO */
     .hero{
       position:relative;
       height:100vh;
@@ -200,7 +199,6 @@
       line-height:1.2;
     }
 
-    /* SOCIAL BUTTONS */
     .social-buttons{
       display:flex;
       justify-content:center;
@@ -230,7 +228,6 @@
       transform:scale(1.12);
     }
 
-    /* SECTIONS + BORDERS */
     .section{
       padding:120px 10%;
       border-top:1px solid rgba(255,255,255,0.06);
@@ -248,8 +245,13 @@
       background:linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent);
     }
 
-    .section::before{ top:0; }
-    .section::after{ bottom:0; }
+    .section::before{
+      top:0;
+    }
+
+    .section::after{
+      bottom:0;
+    }
 
     .section-title{
       font-family:'Anton', sans-serif;
@@ -258,7 +260,7 @@
       line-height:1.2;
       text-align:center;
       margin-bottom:20px;
-margin-top:  -50px;
+      margin-top:-50px;
     }
 
     .about-wrapper{
@@ -270,48 +272,28 @@ margin-top:  -50px;
       opacity:0.9;
     }
 
-    .demo-form-wrapper{
-      max-width:700px;
-      margin:auto;
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:24px;
-      padding:40px;
-      backdrop-filter:blur(16px);
+    .demo-contact{
+      text-align:center;
     }
 
-    .demo-form{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
+    .demo-contact p{
+      margin-bottom:18px;
     }
 
-    .demo-form input,
-    .demo-form textarea{
-      padding:14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.15);
-      background:rgba(20,20,20,0.95);
+    .demo-email{
       color:white;
-      outline:none;
+      text-decoration:none;
+      font-size:1.15rem;
+      border-bottom:1px solid rgba(255,255,255,0.35);
+      padding-bottom:3px;
+      transition:0.25s ease;
     }
 
-    .demo-form button{
-      margin-top:20px;
-      padding:14px 28px;
-      background:transparent;
-      color:white;
-      border:1px solid white;
-      cursor:pointer;
-      transition:0.3s ease;
+    .demo-email:hover{
+      opacity:0.7;
+      border-color:white;
     }
 
-    .demo-form button:hover{
-      background:white;
-      color:black;
-    }
-
-    /* SCROLL REVEAL */
     .reveal{
       opacity:0;
       transform:translateY(50px);
@@ -324,12 +306,10 @@ margin-top:  -50px;
       transform:translateY(0);
     }
 
-    /* subtle stagger feel for social */
     .social-buttons.reveal{
       transition-delay:0.25s;
     }
 
-    /* FOOTER (NO REVEAL) */
     .footer{
       padding:80px 10% 40px;
       border-top:1px solid rgba(255,255,255,0.08);
@@ -386,8 +366,13 @@ margin-top:  -50px;
     }
 
     @media(max-width:768px){
-      .avelle{font-size:2.4rem;}
-      .records{font-size:0.9rem;}
+      .avelle{
+        font-size:2.4rem;
+      }
+
+      .records{
+        font-size:0.9rem;
+      }
 
       .footer-inner{
         flex-direction:column;
@@ -429,7 +414,9 @@ margin-top:  -50px;
   </video>
 
   <div>
-    <h1 id="title" class="reveal">Swedish electronic and pop record label.</h1>
+    <h1 id="title" class="reveal">
+      Swedish electronic and pop record label.
+    </h1>
 
     <div class="social-buttons reveal">
       <a href="https://youtube.com/@avellerecords" target="_blank" class="social-button">
@@ -449,30 +436,26 @@ margin-top:  -50px;
 
 <section class="section" id="about">
   <h2 class="section-title reveal">About Us</h2>
+
   <div class="about-wrapper reveal">
-    Avelle Records is a Swedish independent label focused on electronic and pop music. <br>
+    Avelle Records is a Swedish independent label focused on electronic and pop music.
+    <br>
     We work with new and established artists around the world.
   </div>
 </section>
 
 <section class="section" id="demos">
   <h2 class="section-title reveal">Submit Your Demo</h2>
-<p>
-  For demo submissions and business inquiries please contact:
-  <a href="mailto:hello@avellerecords.com">
-    hello@avellerecords.com
-  </a>
-</p>
-<!--  <div class="demo-form-wrapper reveal">
-    <form class="demo-form">
-      <input type="text" placeholder="Artist Name">
-      <input type="email" placeholder="Email">
-      <input type="text" placeholder="Track Name">
-      <input type="url" placeholder="Demo Link">
-      <textarea rows="5" placeholder="Message"></textarea>
-      <button type="submit">Send Demo</button>
-    </form>
-  </div> -->
+
+  <div class="about-wrapper reveal demo-contact">
+    <p>
+      For demo submissions and business inquiries please contact:
+    </p>
+
+    <a href="mailto:hello@avellerecords.com" class="demo-email">
+      hello@avellerecords.com
+    </a>
+  </div>
 </section>
 
 </main>
@@ -514,18 +497,26 @@ hamburger.addEventListener("click", () => {
   document.body.classList.toggle("menu-open");
 });
 
+document.querySelectorAll(".menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    menu.classList.remove("active");
+    document.body.classList.remove("menu-open");
+  });
+});
+
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* STRIPE */
 const stripe = document.getElementById("stripe");
+
 const headerObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     stripe.classList.toggle("active", !entry.isIntersecting);
   });
 });
+
 headerObserver.observe(document.querySelector("header"));
 
-/* SCROLL REVEAL */
 const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -535,7 +526,9 @@ const revealObserver = new IntersectionObserver((entries) => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.15 });
+}, {
+  threshold:0.15
+});
 
 revealElements.forEach(el => revealObserver.observe(el));
 </script>
